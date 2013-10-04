@@ -1,0 +1,176 @@
+@import "mixins";
+
+html, body {
+  width:        100%;
+  height:       100%;
+  background:   #222;
+
+
+}
+
+* {
+  box-sizing:   border-box;
+}
+
+button {
+  background: none;
+  border: none;
+  color: #ddd;
+}
+
+.task-panel {
+  .unselectable;
+
+  width:        320px;
+  background:   #111;
+
+  border-radius: 10px;
+  margin:       10px;
+  padding:      10px;
+
+  font-size:    16px;
+
+  ul, li {
+    list-style-type: none;
+  }
+
+  .activity-list {
+    background:   #0c0c0c;
+    border-radius: 6px;
+  }
+
+  .activity {
+    .clickable;
+
+    border-radius: 4px;
+    padding:      10px;
+    padding-left: 12px;
+
+    line-height:  1.2;
+
+    color:        #bbb;
+    font-size:    16px;
+    font-family:  'Ubuntu', sans-serif;
+    font-weight:  300;
+
+    &.open,&.closed {
+      &:before {
+        padding-right: 10px;
+
+        font-family: FontAwesome;
+        content: "\f105";
+        font-size: 16px;
+        color: #666;
+      }
+    }
+
+    &.open {
+      background: #222;
+      margin-bottom: 3px;
+
+      > ul { display: auto; }
+
+      &:before {
+        font-family: FontAwesome;
+        padding-right: 8px;
+        content: "\f107";
+        font-size: 16px;
+        color: #666;
+      }
+
+      > button.icon-remove {
+        display: inline;
+        float: right;
+
+        vertical-align: middle;
+
+        .overlay-button;
+      }
+    }
+
+    &.closed {
+      > ul { display: none; }
+
+      &:before {
+        padding-right: 12px;
+      }
+
+      > button.icon-remove {
+        display: none;
+      }
+
+      &:hover {
+        background: #0a0a0a;
+        border-radius: 0px;
+      }
+    }
+
+    &.new {
+      line-height: 1;
+
+      > form {
+        display: inline;
+
+        input {
+          background: #0f0f0f;
+          outline: none;
+          border: none;
+          border-radius: 1px;
+          padding: 6px;
+          padding-bottom: 8px;
+          vertical-align: middle;
+
+          color: inherit;
+
+          &:focus {
+            background: #222;
+          }
+        }
+      }
+
+      &:before {
+        padding-right: 10px;
+
+        font-family: FontAwesome;
+        content: "\f067";
+
+        font-size: 14px;
+        color: #666;
+        opacity: 0.6;
+      }
+    }
+
+    .task-list {
+      padding-top: 10px;
+
+      .closed:before {
+        padding-left: 10px;
+        opacity: 0.1;
+      }
+
+      .task {
+        border-left:  solid 1px transparent;
+        border-top: dotted 1px #131313;
+        padding:      10px;
+        padding-left: 14px;
+
+        line-height:  1.2;
+
+        &:first-child {
+          border-top: none;
+        }
+
+        &:hover {
+          background: #313131;
+          border-left: dotted 1px #333;
+        }
+
+        > span {
+          overflow: hidden;
+        }
+
+        .movable;
+      }
+    }
+  }
+}
