@@ -64,6 +64,17 @@ button {
       }
     }
 
+    .button-panel {
+      button {
+        display: inline;
+        float: right;
+
+        vertical-align: middle;
+
+        .overlay-button;
+      }
+    }
+
     &.open {
       background: #222;
       margin-bottom: 3px;
@@ -77,15 +88,6 @@ button {
         font-size: 16px;
         color: #666;
       }
-
-      > button.icon-remove {
-        display: inline;
-        float: right;
-
-        vertical-align: middle;
-
-        .overlay-button;
-      }
     }
 
     &.closed {
@@ -95,13 +97,18 @@ button {
         padding-right: 12px;
       }
 
-      > button.icon-remove {
+      > .button-panel {
         display: none;
       }
 
       &:hover {
         background: #0a0a0a;
         border-radius: 0px;
+
+        &:first-child {
+          border-top-left-radius: inherit;
+          border-top-right-radius: inherit;
+        }
       }
     }
 
@@ -149,8 +156,10 @@ button {
       }
 
       .task {
+        .movable;
+
         border-left:  solid 1px transparent;
-        border-top: dotted 1px #131313;
+        border-top: dotted 1px #191919;
         padding:      10px;
         padding-left: 14px;
 
@@ -162,14 +171,39 @@ button {
 
         &:hover {
           background: #313131;
-          border-left: dotted 1px #333;
+        }
+
+        &.new {
+          line-height: 1;
+
+          &:hover {
+            background: inherit;
+          }
+
+          > form {
+            display: inline;
+
+            input {
+              background: #1b1b1b;
+              outline: none;
+              border: none;
+              border-radius: 1px;
+              padding: 6px;
+              padding-bottom: 8px;
+              vertical-align: middle;
+
+              color: inherit;
+
+              &:focus {
+                background: #1f1f1f;
+              }
+            }
+          }
         }
 
         > span {
           overflow: hidden;
         }
-
-        .movable;
       }
     }
   }

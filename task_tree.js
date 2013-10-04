@@ -4,15 +4,36 @@ $('.task-panel').on('click', '.closed,.open', function(evt) {
     $(this).toggleClass('open closed');
   }
   return false;
-}).on('click', '.open > button.icon-remove', function(evt) {
-  $(this).parent('li').remove();
 }).on('submit', '.new.activity > form', function(evt) {
   $(this).parent().before('<li class="closed activity">'
+      + '<span class="button-panel">'
+        + '<button class="icon-remove"></button>'
+        + '<button class="icon-pencil"></button>'
+      + '</span>'
       + '<span>' + $(this).find('> input').val() + '</span>'
-      + '<button class="icon-remove"></button>'
+      + '<ul class="task-list">'
+        + '<li class="new task">'
+          + '<form><input type="text"></input></form>'
+        + '</li>'
+      + '</ul>'
+    + '</li>');
+  $(this).find('> input').val('')
+  return false;
+}).on('click', '.activity > .button-panel .icon-remove', function(evt) {
+  $(this).parents('li').first().remove();
+}).on('submit', '.new.task > form', function(evt) {
+  $(this).parent().before('<li class="task">'
+      + '<span class="button-panel">'
+        + '<button class="icon-remove"></button>'
+        + '<button class="icon-pencil"></button>'
+      + '</span>'
+      + '<span>' + $(this).find('> input').val() + '</span>'
       + '<ul class="task-list"></ul>'
     + '</li>');
+  $(this).find('> input').val('')
   return false;
+}).on('click', '.task > .button-panel .icon-remove', function(evt) {
+  $(this).parents('li').first().remove();
 });
 
 /*
