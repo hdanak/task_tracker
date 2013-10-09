@@ -50,17 +50,6 @@ button {
     font-family:  'Ubuntu', sans-serif;
     font-weight:  300;
 
-    &.open,&.closed {
-      &:before {
-        padding-right: 10px;
-
-        font-family: FontAwesome;
-        content: "\f105";
-        font-size: 16px;
-        color: #666;
-      }
-    }
-
     .button-panel {
       button {
         display: inline;
@@ -72,6 +61,17 @@ button {
       }
     }
 
+    &.open,&.closed {
+      &:before {
+        padding-right: 10px;
+
+        font-family: FontAwesome;
+        content: "\f105";
+        font-size: 16px;
+        color: #666;
+      }
+    }
+
     &.open {
       background: #222;
       margin-bottom: 3px;
@@ -79,11 +79,9 @@ button {
       > ul { display: auto; }
 
       &:before {
-        font-family: FontAwesome;
         padding-right: 8px;
+
         content: "\f107";
-        font-size: 16px;
-        color: #666;
       }
     }
 
@@ -142,7 +140,6 @@ button {
 
         font-family: FontAwesome;
         content: "\f067";
-
         font-size: 14px;
         color: #666;
         opacity: 0.6;
@@ -158,7 +155,7 @@ button {
       }
 
       .task {
-        .movable;
+        .clickable;
 
         border-left:  solid 1px transparent;
         border-top: dotted 1px #191919;
@@ -173,6 +170,37 @@ button {
 
         &:hover {
           background: #313131;
+        }
+
+        &.checked,&.unchecked {
+          &:before {
+            padding-right: 10px;
+
+            font-family: FontAwesome;
+            font-size: 16px;
+            color: #666;
+          }
+        }
+
+        &.checked {
+          > .label {
+            text-decoration: line-through;
+            opacity: 0.5;
+          }
+
+          &:hover {
+            background: inherit;
+          }
+
+          &:before {
+            content: "\f14a";
+          }
+        }
+
+        &.unchecked {
+          &:before {
+            content: "\f096";
+          }
         }
 
         &.new {
@@ -203,7 +231,7 @@ button {
           }
         }
 
-        > span {
+        > .label {
           overflow: hidden;
         }
       }
