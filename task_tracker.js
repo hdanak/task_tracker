@@ -41,21 +41,37 @@ jQuery.fn.taskTracker = function() {
       var label = $(this).find('> input').val()
       $(this).find('> input').val('')
 
-      $(this).parent().before(
-        $(elem_protos[type]).find('> .label').text(label).parent()
-      )
+      var $new_item = $(elem_protos[type]).find('> .label').text(label).parent()
+      $(this).parent().before($new_item)
+
+      if (type == 'activity')
+        $new_item.click()
+
       return false
     })
     .on('submit', '.edit > form', function(evt) {
-      var label = $(this).find('> input').val()
+      $(this).parents('li:first').find('> .label').text(
+        $(this).find('> input').val()
+      )
       return false
     })
     .on('click', '.button-panel > .icon-remove', function(evt) {
       $(this).parents('li:first').remove()
     })
     .on('click', '.button-panel > .icon-pencil', function(evt) {
-      var $label = $(this).parents('li:first').addClass('edit').find('> .label')
-      $label.replaceWith('<form><input>' + $label.text())
+      var $label = $(this).parents('li:first').find('> .label')
+
+      if ($label.hasClass('edit')) {
+        $label.text($label.find('input').val())
+      } else {
+        $label.html(
+          $('<form><input>').find('> input').val($label.text()).parent()
+        )
+      }
+
+      $label.toggleClass('edit')
+
+      return false
     })
     .on('click', '.closed,.open', function(evt) {
       if ($(this).add('> .label', this).is(evt.target)) {
