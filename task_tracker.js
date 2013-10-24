@@ -1,22 +1,13 @@
 jQuery.fn.taskTracker = function() {
-  var elem_protos = {
+  var templates = {
     task_tracker: (
       '<div class="task-tracker">' +
       '  <ul class="activity-list">' +
       '    <li class="new activity">' +
-      '      <form><input></input></form>' +
+      '      <form><input/></form>' +
       '    </li>' +
       '  </ul>' +
       '</div>'
-    ),
-    task: (
-      '<li class="unchecked task">' +
-      '  <span class="button-panel">' +
-      '    <button class="icon-remove"></button>' +
-      '    <button class="icon-pencil"></button>' +
-      '  </span>' +
-      '  <span class="label"></span>' +
-      '</li>'
     ),
     activity: (
       '<li class="closed activity">' +
@@ -27,21 +18,30 @@ jQuery.fn.taskTracker = function() {
       '  <span class="label"></span>' +
       '  <ul class="task-list">' +
       '    <li class="new task">' +
-      '      <form><input></input></form>' +
+      '      <form><input/></form>' +
       '    </li>' +
       '  </ul>' +
+      '</li>'
+    ),
+    task: (
+      '<li class="unchecked task">' +
+      '  <span class="button-panel">' +
+      '    <button class="icon-remove"></button>' +
+      '    <button class="icon-pencil"></button>' +
+      '  </span>' +
+      '  <span class="label"></span>' +
       '</li>'
     )
   }
 
-  $(elem_protos.task_tracker).prependTo(this)
+  $(templates.task_tracker).prependTo(this)
     .on('submit', '.new > form', function(evt) {
       var type = $(this).parent().hasClass('task') ? 'task' : 'activity'
 
       var label = $(this).find('> input').val()
       $(this).find('> input').val('')
 
-      var $new_item = $(elem_protos[type]).find('> .label').text(label).parent()
+      var $new_item = $(templates[type]).find('> .label').text(label).parent()
       $(this).parent().before($new_item)
 
       if (type == 'activity')

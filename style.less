@@ -1,34 +1,32 @@
+@import url(http://yui.yahooapis.com/3.13.0/build/cssreset/cssreset-min.css);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300);
+@import url(http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 @import "mixins";
 
-html, body {
-  background:       #222;
-  width:            100%;
-  height:           100%;
-}
-
-* {
-  box-sizing:       border-box;
-}
-
 .task-tracker {
+
   .unselectable;
 
-  background:       #111;
-  width:            100%;
-  height:           100%;
+  background:   #111;
+  width:        100%;
+  height:       100%;
+  padding:      10px;
 
-  padding:          10px;
+  font-size:    16px;
 
-  font-size:        16px;
+  &, * {
+    box-sizing: border-box;
+  }
 
   ul, li {
     list-style-type:  none;
   }
 
   button {
-    background:       none;
-    border:           none;
-    color:            #ddd;
+    background:   none;
+    border:       none;
+
+    color:  #ddd;
   }
 
   input {
@@ -40,48 +38,55 @@ html, body {
     padding:          6px;
     padding-bottom:   8px;
 
-    //vertical-align:   middle;
-    color:            inherit;
-  }
-
-  .label {
-    overflow:         hidden;
-
-    &.edit {
-      display:          inline-table;
-      line-height:      1;
-      width:            100%;
-
-      > form {
-        display:        table-cell;
-        width:          100%;
-      }
-    }
+    //vertical-align: middle;
+    color:  inherit;
   }
 
   .activity-list {
-    background:       #0c0c0c;
-    border-radius:    6px;
+    background:     #0c0c0c;
+    border-radius:  6px;
+  }
+
+  .task-list {
+    padding-top:  10px;
+
+    .closed:before {
+      padding-left: 10px;
+
+      opacity:  0.1;
+    }
+  }
+
+  .new, .edit {
+    display:  inline-table;
+    width:    100%;
+
+    line-height:  1;
+
+    > form {
+      display:  table-cell;
+      width:    100%;
+    }
   }
 
   .activity {
     .clickable;
 
-    border-radius:    4px;
-    padding:          10px;
-    padding-left:     12px;
+    border-radius:  4px;
+    padding:        10px;
+    padding-left:   12px;
 
-    line-height:      1.2;
+    line-height:  1.2;
 
-    color:            #bbb;
-    font-size:        16px;
-    font-family:      'Ubuntu', sans-serif;
-    font-weight:      300;
+    color:        #bbb;
+    font-size:    16px;
+    font-family:  'Ubuntu', sans-serif;
+    font-weight:  300;
 
     .button-panel {
       button {
-        display:        inline;
-        float:          right;
+        display:  inline;
+        float:    right;
 
         vertical-align: middle;
 
@@ -93,23 +98,23 @@ html, body {
       &:before {
         padding-right:  10px;
 
-        font-family:    FontAwesome;
-        content:        "\f105";
-        font-size:      16px;
-        color:          #666;
+        font-family:  FontAwesome;
+        content:      "\f105";
+        font-size:    16px;
+        color:        #666;
       }
     }
 
     &.open {
-      background:       #222;
-      margin-bottom:    3px;
+      background:     #222;
+      margin-bottom:  3px;
 
       > ul { display: initial; }
 
       &:before {
         padding-right:  8px;
 
-        content:        "\f107";
+        content:  "\f107";
       }
     }
 
@@ -125,8 +130,8 @@ html, body {
       }
 
       &:hover {
-        background:       #0a0a0a;
-        border-radius:    0px;
+        background:     #0a0a0a;
+        border-radius:  0px;
 
         &:first-child {
           border-top-left-radius:   inherit;
@@ -138,15 +143,9 @@ html, body {
     &.new {
       .unclickable;
 
-      display:          table;
-      line-height:      1;
-
       > form {
-        display:        table-cell;
-        width:          100%;
-
         input {
-          background:   #0f0f0f;
+          background: #0f0f0f;
 
           &:focus {
             background: #222;
@@ -157,56 +156,47 @@ html, body {
       &:before {
         padding-right:  10px;
 
-        font-family:    FontAwesome;
-        content:        "\f067";
-        font-size:      14px;
-        color:          #666;
-        opacity:        0.6;
+        font-family:  FontAwesome;
+        content:      "\f067";
+        font-size:    14px;
+        color:        #666;
+        opacity:      0.6;
       }
-    }
-  }
-
-  .task-list {
-    padding-top:        10px;
-
-    .closed:before {
-      padding-left:     10px;
-      opacity:          0.1;
     }
   }
 
   .task {
     .clickable;
 
-    border-left:        solid 1px transparent;
-    border-top:         dotted 1px #191919;
-    padding:            10px;
-    padding-left:       14px;
+    border-left:    solid 1px transparent;
+    border-top:     dotted 1px #191919;
+    padding:        10px;
+    padding-left:   14px;
 
-    line-height:        1.2;
+    line-height:  1.2;
 
     &:first-child {
-      border-top:       none;
+      border-top: none;
     }
 
     &:hover {
-      background:       #313131;
+      background: #313131;
     }
 
     &.checked,&.unchecked,&.new {
       &:before {
         padding-right:  10px;
 
-        font-family:    FontAwesome;
-        font-size:      16px;
-        color:          #666;
+        font-family:  FontAwesome;
+        font-size:    16px;
+        color:        #666;
       }
     }
 
     &.checked {
       > .label {
-        text-decoration: line-through;
-        opacity:  0.5;
+        text-decoration:  line-through;
+        opacity:          0.5;
       }
 
       &:hover {
@@ -225,11 +215,9 @@ html, body {
     }
 
     &.new {
-      display:      table;
-      line-height:  1;
-
       &:before {
-        padding-right:  8px;
+        padding-right:    8px;
+        vertical-align:   middle;
 
         content:  "\f096";
         opacity:  0.6;
@@ -237,11 +225,6 @@ html, body {
 
       &:hover {
         background: inherit;
-      }
-
-      > form {
-        display:  table-cell;
-        width:    100%;
       }
     }
   }
